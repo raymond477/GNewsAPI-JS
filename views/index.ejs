@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Gatherer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Menambahkan Poppins -->
+</head>
+<body>
+
+    <h1>Cari Topik Berita Terbaru</h1>
+    <form action="/news" method="POST">
+        <input type="text" name="location" placeholder="Masukkan topik atau lokasi" required>
+        <button type="submit">Cari</button>
+    </form>
+
+    <% if (error) { %>
+        <p class="error"><%= error %></p>
+    <% } %>
+
+    <% if (articles && articles.length > 0) { %>
+        <h2>Hasil Berita Terkait <%= title.replace('Hasil Berita Terkait ', '') %></h2>
+        <div class="articles">
+            <div class="articles-grid">
+                <% articles.forEach(article => { %>
+                    <div class="article">
+                        <h3><a href="<%= article.url %>" target="_blank"><%= article.title %></a></h3>
+                        <p><%= article.description %></p>
+                        <% if (article.image) { %>
+                            <img src="<%= article.image %>" alt="Image for <%= article.title %>">
+                        <% } %>
+                        <p><small>Dipublikasikan pada: <%= new Date(article.publishedAt).toLocaleDateString() %></small></p>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    <% } else { %>
+        <h2>Tidak ada hasil </h2>
+        
+        <div class="loader">
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__ball"></div>
+        </div>
+    <% } %>
+    
+
+</body>
+</html>

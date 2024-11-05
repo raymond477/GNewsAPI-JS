@@ -1,0 +1,15 @@
+{
+  "name": "news-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Peter Raymond",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "news-api": "file:"
+  }
+}
